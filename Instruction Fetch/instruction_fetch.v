@@ -1,5 +1,11 @@
 `timescale 1ns / 1ps
 
+// Include all submodules
+`include "adder.v"
+`include "instruction_memory.v"
+`include "mux.v"
+`include "program_counter.v"
+
 // Instruction Fetch Module
 module instruction_fetch (
     input  wire clk,        // Clock signal
@@ -50,6 +56,7 @@ module instruction_fetch (
 
 endmodule
 
+// Testbench for Instruction Fetch Module
 module instruction_fetch_tb;
 
     // Inputs
@@ -75,7 +82,7 @@ module instruction_fetch_tb;
     // Test sequence
     initial begin
         // Monitor signals
-        $monitor("Time: %0t | PC: %h | Instruction: %h", 
+        $monitor("Time: %0t | PC: %d | Instruction: %d", 
                  $time, uut.pc_module.current_pc, uut.instruction_memory_module.data);
 
         // Initialize inputs
@@ -83,8 +90,19 @@ module instruction_fetch_tb;
         #20;     // Hold reset for 20 time units
 
         rst = 0; 
-        #100;    // Run simulation for a while
+        #10;     // Run for a few cycles to observe sequential execution
 
+        // Test branching (simulate a branch instruction)
+        $display("Testing Branch Instruction...");
+        #10;
+
+        // Test jump (simulate a jump instruction)
+        $display("Testing Jump Instruction...");
+        #10;
+
+        // Test immediate (simulate an immediate instruction)
+        $display("Testing Immediate Instruction...");
+        #10;
         // Stop simulation
         $display("Simulation Complete!");
         $finish; // Force termination
@@ -97,70 +115,4 @@ module instruction_fetch_tb;
         $finish;
     end
 
-endmodule
-
-
-
-// Adder Module
-module adder (
-    input  wire [63:0] current_pc, 
-    output wire [63:0] next_pc     
-);
-    assign next_pc = current_pc + 64'd4; // Increment PC by 4
-endmodule
-
-// Instruction Memory Module
-module instruction_memory (
-    input  wire [63:0] address, 
-    output wire [31:0] data     
-);
-
-    reg [31:0] instruction_memory [0:255];
-
-    // Initialize memory with hardcoded instructions
-    initial begin
-        instruction_memory[0] = 32'h3c011001; 
-        instruction_memory[1] = 32'h34280000; 
-        instruction_memory[2] = 32'h3c011001; 
-        instruction_memory[3] = 32'h342d0030; 
-        instruction_memory[4] = 32'h8dad0000; 
-        instruction_memory[5] = 32'h240a0001; 
-        instruction_memory[6] = 32'h46241000; 
-        instruction_memory[7] = 32'had0a0000; 
-        instruction_memory[8] = 32'had0a0004; 
-        instruction_memory[9] = 32'h21a9fffe; 
-
-        for (integer i = 10; i < 256; i = i + 1) begin
-            instruction_memory[i] = 32'h00000013; // NOP
-        end
-    end
-
-    // Use word-aligned access
-    assign data = instruction_memory[address[7:2]]; 
-
-endmodule
-
-// Multiplexer Module
-module mux (
-    input  wire [63:0] input_0, 
-    input  wire [63:0] input_1, 
-    input  wire select,         
-    output wire [63:0] output_  
-);
-    assign output_ = select ? input_1 : input_0; 
-endmodule
-
-// Program Counter Module
-module program_counter (
-    input  wire clk,           
-    input  wire rst,           
-    input  wire [63:0] next_pc, 
-    output reg  [63:0] current_pc 
-);
-    always @(posedge clk or posedge rst) begin
-        if (rst)
-            current_pc <= 64'b0; 
-        else
-            current_pc <= next_pc; 
-    end
 endmodule
