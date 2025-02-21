@@ -4,10 +4,11 @@
 
 ---
 
-###Note:
+### Note:
 1. In the Instruction Fetch stage:
       The MUX is just there, nothing to do with the functionality of IF stage for now, the select signal for the mux will be useful after the instruction is decoded and if it's a branch instruction then we have to use the zero output of the alu to get the select signal.
 2. 
+
 
 ## 1. Overall Goal
 
