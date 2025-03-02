@@ -9,7 +9,7 @@ module InstructionFetch(
 );
 
     // Instruction Memory: 32 x 32-bit words
-    reg [31:0] instruction_memory [0:31];
+    reg [31:0] instruction_memory [0:63];
 
     // Initialize memory (for simulation/testing)
     initial begin
