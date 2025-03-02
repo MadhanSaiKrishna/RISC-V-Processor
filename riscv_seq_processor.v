@@ -2,11 +2,12 @@ module riscv_seq_processor (
     input wire clk, reset
 );
     // ========== IF Stage Signals ==========
-    wire [31:0] pc, instruction;
+    wire [63:0] pc, next_pc; // changed pc to 64 bits and next_pc wire declared
+    wire [31:0] instruction;
     
     // ========== ID Stage Signals ==========
     wire [4:0] rs1, rs2, rd;
-    wire [31:0] reg_read_data1, reg_read_data2, imm_ext;
+    wire [63:0] reg_read_data1, reg_read_data2, imm_ext;
     wire [6:0] opcode;
     wire [2:0] funct3;
     wire [6:0] funct7;
@@ -14,21 +15,23 @@ module riscv_seq_processor (
     wire [1:0] alu_op;
 
     // ========== EX Stage Signals ==========
-    wire [31:0] alu_result, operand2;
+    wire [63:0] alu_result, operand2, branch_target;
     wire [3:0] alu_control;
     wire zero_flag, branch_taken;
 
     // ========== MEM Stage Signals ==========
-    wire [31:0] mem_data;
+    wire [63:0] mem_data;
 
     // ========== WB Stage Signals ==========
-    wire [31:0] write_data;
+    wire [63:0] write_data;
 
     // ========== Instruction Fetch (IF) ==========
     instruction_fetch IF_stage (
         .clk(clk),
         .reset(reset),
-        .pc_out(pc),
+        .PCSrc(PCSrc),
+        .branchAddr(branchAddr),
+        .PC(pc),
         .instruction(instruction)
     );
 
@@ -56,14 +59,15 @@ module riscv_seq_processor (
     );
 
     control_unit CU (
-        .opcode(opcode),
+        .instruction(instruction),
         .Branch(branch),
         .MemRead(mem_read),
         .MemtoReg(mem_to_reg),
         .ALUOp(alu_op),
         .MemWrite(mem_write),
         .ALUSrc(alu_src),
-        .RegWrite(reg_write)
+        .RegWrite(reg_write),
+        .rd(rd) //Pass register address of RD
     );
 
     imm_gen IMM_GEN (
@@ -94,8 +98,14 @@ module riscv_seq_processor (
         .zero(zero_flag)
     );
 
+     assign branch_target = pc + imm_ext; // Compute the branch target address
+
     // Branch Decision
     assign branch_taken = branch & zero_flag; // Taken only if branch is enabled and condition is met
+
+    //Next PC Calculation
+    assign PCSrc = branch_taken && branch; //Only Branch when brnach taken and branch signal from control unit is HIGH
+    assign next_pc = PCSrc ? branch_target : pc + 4; //If the branch happens pc needs to be updated to branch_target
 
     // ========== Memory Access (MEM) ==========
     memory_access MEM_stage (
@@ -103,7 +113,7 @@ module riscv_seq_processor (
         .MemRead(mem_read),
         .MemWrite(mem_write),
         .address(alu_result),
-        .write_data(reg_read_data2),
+        .write_data(rs2_data),
         .read_data(mem_data)
     );
 
@@ -112,7 +122,8 @@ module riscv_seq_processor (
         .MemtoReg(mem_to_reg),
         .alu_result(alu_result),
         .mem_data(mem_data),
-        .write_data(write_data)
+        .write_data(write_data),
+        .rd(rd) //Send register to write data for every posedge clk
     );
 
 endmodule
