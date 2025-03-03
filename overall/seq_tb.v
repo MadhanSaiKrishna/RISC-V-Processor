@@ -36,29 +36,30 @@ module TopLevel_tb;
         reset = 0;
         
         // Run simulation for 64 clock cycles but print only from 32 to 64
-        repeat (64) begin
+        repeat (45) begin
             #10;
             instr_count = instr_count + 1;
             
             // Print only from instruction 32 to 64
-            if (instr_count >= 30) begin
+            if (instr_count >= 30)
+             begin
                 $display("========================");
                 $display("Instruction No: %0d | Time: %0t", instr_count, $time);
-                $display("PC: %h | Instruction: %h", uut.PC, uut.instruction);
+                $display("PC: %d | Instruction: %h", uut.PC, uut.instruction);
                 
                 // Instruction Decode Stage
                 $display("--- Decode Stage ---");
-                $display("Opcode: %b | rs1: %d | rs2: %d | rd: %d | funct3: %b | funct7: %b | Immediate: %h", 
+                $display("Opcode: %b | rs1: %d | rs2: %d | rd: %d | funct3: %b | funct7: %b | Immediate: %d", 
                     uut.idecode.opcode, uut.idecode.rs1, uut.idecode.rs2, uut.idecode.rd, 
                     uut.idecode.funct3, uut.idecode.funct7, uut.immgen.imm);
                 
                 // Execute Stage
                 $display("--- Execute Stage ---");
-                $display("ReadData1: %h | ReadData2: %h | Immediate: %h", uut.execute.readData1, uut.execute.readData2, uut.execute.imm);
+                $display("ReadData1: %h | ReadData2: %h | Immediate: %d | ImShifted: %d | PCPlusImShifted : %d | BranchTaken : %h ", uut.execute.readData1, uut.execute.readData2, uut.execute.imm, uut.execute.immShifted, uut.execute.PCPlusImmShifted, uut.execute.BranchTaken);
                 $display("ALUOp: %b | ALUSrc: %b | ALUControl: %b", uut.execute.ALUOp, uut.execute.ALUSrc, uut.execute.ALUControl);
                 $display("ALU Input 1: %h | ALU Input 2: %h | ALU Result: %h | Zero Flag: %b", 
                          uut.execute.readData1, uut.execute.ALUInput2, uut.execute.ALUResult, uut.execute.Zero);
-                $display("Branch Taken: %b | Branch Address: %h", uut.execute.BranchTaken, uut.execute.BranchAddr);
+                $display("Branch Taken: %b | Branch Address: %h", uut.execute.BranchTaken, uut.execute.PCPlusImmShifted);
                 
                 // Data Memory
                 $display("--- Data Memory ---");

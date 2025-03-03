@@ -12,7 +12,8 @@ module DataMemory (
     reg [63:0] memory [0:1023];
 
     // Valid address range: 0 to 1023 * 8 = 8184 (0x1FF8)
-    wire valid_address = (address < 64'h2000); // Ensure address is within bounds
+    wire valid_address = (address < 64'h2000) && (address[2:0] == 3'b000); 
+
 
     // Initialize memory on reset
     integer i;

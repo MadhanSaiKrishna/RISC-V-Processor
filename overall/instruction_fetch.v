@@ -2,7 +2,7 @@
 module InstructionFetch(
     input clk,                // Clock signal
     input reset,              // Reset signal
-    input PCSrc,              // Control signal: 1 for branch, 0 for sequential execution
+    input BranchTaken,              // Control signal: 1 for branch, 0 for sequential execution
     input [63:0] branchAddr,  // 64-bit Branch target address
     output reg [63:0] PC,     // Current 64-bit Program Counter
     output reg [31:0] instruction // 32-bit instruction fetched
@@ -33,7 +33,7 @@ module InstructionFetch(
         if (reset)
             PC <= 64'b0; // Reset PC to 0
         else begin
-            if (PCSrc)
+            if (BranchTaken)
                 PC <= branchAddr; // Branch address
             else
                 PC <= alu_result; // PC + 4

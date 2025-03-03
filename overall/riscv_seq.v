@@ -47,6 +47,8 @@ module TopLevel (
     
     // Execute Stage
     wire [63:0] ALUResult;
+    wire [63:0] immShifted;
+    wire [63:0] PCPlusImmShifted;
     wire Zero;
 
     // Data Memory Signals
@@ -63,8 +65,8 @@ module TopLevel (
     InstructionFetch ifetch (
         .clk(clk),
         .reset(reset),
-        .PCSrc(PCSrc),
-        .branchAddr(branchAddr),
+        .BranchTaken(BranchTaken),
+        .branchAddr(PCPlusImmShifted),
         .PC(PC),
         .instruction(instruction)
     );
@@ -138,7 +140,10 @@ module TopLevel (
         .ALUResult(ALUResult),
         .Zero(Zero),
         .ALUInput2(ALUInput2),
-        .ALUControl(ALUControl)
+        .ALUControl(ALUControl),
+        .immShifted(immShifted),
+        .PCPlusImmShifted(PCPlusImmShifted),
+        .BranchTaken(BranchTaken)
     );
 
     // Data Memory
@@ -158,13 +163,12 @@ module TopLevel (
         .alu_result(ALUResult),
         .mem_data(mem_readData),
         .write_data(write_data)
-        // .rd(rd_addr)
     );
     
     
     //Assign the branchaddress and PCSrc
-    assign branchAddr = execute.BranchAddr;
-    assign PCSrc = execute.BranchTaken;
+    // assign branchAddr = execute.BranchAddr;
+    // assign PCSrc = execute.BranchTaken;
     assign final_rd = regfile.registers[31]; //output of reg 31
 
 endmodule

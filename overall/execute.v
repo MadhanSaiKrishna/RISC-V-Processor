@@ -13,12 +13,13 @@ module ExecuteStage (
     output wire [63:0] ALUResult, // Result from ALU
     output wire Zero,      // Zero flag from ALU
     output wire [63:0] ALUInput2, // Added output for testbench monitoring
-    input [3:0] ALUControl   // ALU control signal
+    input [3:0] ALUControl,   // ALU control signal
+    output wire [63:0] immShifted,
+    output wire [63:0] PCPlusImmShifted,
+    output wire BranchTaken
 );
 
-    wire [63:0] immShifted;
-    wire BranchTaken;
-    wire [63:0] PCPlusImmShifted;
+    // wire BranchTaken;
     wire [63:0] PCPlus4;
 
     // MUX for ALU input 2 selection
@@ -56,7 +57,7 @@ module ExecuteStage (
     );
 
     // Branch address output
-    assign BranchAddr = PCPlusImmShifted;
+    // assign BranchAddr = PCPlusImmShifted;
 
     // Zero flag
     assign Zero = (ALUResult == 64'b0);
