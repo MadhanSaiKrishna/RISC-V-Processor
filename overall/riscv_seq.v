@@ -162,7 +162,7 @@ module TopLevel (
         .MemtoReg(MemtoReg),
         .alu_result(ALUResult),
         .mem_data(mem_readData),
-        .write_data(write_data)
+        .wb_out(write_data)
     );
     
     

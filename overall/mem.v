@@ -8,33 +8,28 @@ module DataMemory (
     output reg [63:0] readData
 );
 
-    // Memory array: 1024 locations (8KB)
-    reg [63:0] memory [0:1023];
-
-    // Valid address range: 0 to 1023 * 8 = 8184 (0x1FF8)
-    wire valid_address = (address < 64'h2000) && (address[2:0] == 3'b000); 
-
+    // Memory array: 32 locations (256 bytes)
+    reg [63:0] memory [0:31];
 
     // Initialize memory on reset
     integer i;
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            for (i = 0; i < 1024; i = i + 1) begin
-                memory[i] <= 64'b0; // Initialize memory to all zeros
+            for (i = 0; i < 32; i = i + 1) begin
+                memory[i] <= i; // Initialize memory with index values
             end
-        end else if (MemWrite && valid_address) begin
-            memory[address[12:3]] <= writeData; // Write data to memory
+        end else if (MemWrite) begin
+            memory[address[8:3]] <= writeData; // Write data to memory
         end
     end
 
-    // Synchronous read operation
-    always @(posedge clk) begin
-        if (MemRead && valid_address) begin
-            readData <= memory[address[12:3]]; // Read data from memory
+    // Asynchronous read operation
+    always @(*) begin
+        if (MemRead) begin
+            readData = memory[address[8:3]]; // Read data from memory
         end else begin
-            readData <= 64'b0; // Force output to zero for invalid access or no read operation
+            readData = 64'b0; // Force output to zero for invalid access or no read operation
         end
     end
 
 endmodule
-
