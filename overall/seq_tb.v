@@ -41,7 +41,7 @@ module TopLevel_tb;
             instr_count = instr_count + 1;
             
             // Print only from instruction 32 to 64
-            if (instr_count >= 32) begin
+            if (instr_count >= 30) begin
                 $display("========================");
                 $display("Instruction No: %0d | Time: %0t", instr_count, $time);
                 $display("PC: %h | Instruction: %h", uut.PC, uut.instruction);
