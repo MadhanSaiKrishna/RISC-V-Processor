@@ -42,6 +42,7 @@ module TopLevel (
 
     // Register File Signals
     wire [63:0] readData1;
+    wire [63:0] ALUInput2;
     wire [63:0] readData2;
     
     // Execute Stage
@@ -110,6 +111,18 @@ module TopLevel (
         .opcode(opcode),
         .imm(imm)
     );
+
+    //ALU control stage
+    ALUControlUnit alucontrolunit (
+        .funct3(funct3),
+        .funct7(funct7),
+        .ALUOp(ALUOp),
+        .ALUControl(ALUControl)
+    );
+
+    //Internal wire for alucontrol
+    wire [3:0] ALUControl;
+    
     
     // Execute Stage
     ExecuteStage execute (
@@ -123,7 +136,9 @@ module TopLevel (
         .ALUSrc(ALUSrc),
         .Branch(Branch),
         .ALUResult(ALUResult),
-        .Zero(Zero)
+        .Zero(Zero),
+        .ALUInput2(ALUInput2),
+        .ALUControl(ALUControl)
     );
 
     // Data Memory
@@ -139,24 +154,13 @@ module TopLevel (
 
     // Write Back Stage
     write_back wb(
-        .clk(clk),
         .MemtoReg(MemtoReg),
         .alu_result(ALUResult),
         .mem_data(mem_readData),
-        .write_data(write_data),
-        .rd(rd_addr)
+        .write_data(write_data)
+        // .rd(rd_addr)
     );
     
-    //ALU control stage
-    ALUControlUnit alucontrolunit (
-        .funct3(funct3),
-        .funct7(funct7),
-        .ALUOp(ALUOp),
-        .ALUControl(ALUControl)
-    );
-
-    //Internal wire for alucontrol
-    wire [3:0] ALUControl;
     
     //Assign the branchaddress and PCSrc
     assign branchAddr = execute.BranchAddr;

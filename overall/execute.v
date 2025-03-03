@@ -11,12 +11,11 @@ module ExecuteStage (
     input ALUSrc,             // ALU source selection
     input Branch,             // Branch control signal
     output wire [63:0] ALUResult, // Result from ALU
-    output wire Zero      // Zero flag from ALU
+    output wire Zero,      // Zero flag from ALU
+    output wire [63:0] ALUInput2, // Added output for testbench monitoring
+    input [3:0] ALUControl   // ALU control signal
 );
 
-    // Wires for intermediate signals
-    wire [63:0] ALUInput2;
-    wire [3:0] ALUControl;
     wire [63:0] immShifted;
     wire BranchTaken;
     wire [63:0] PCPlusImmShifted;
@@ -25,13 +24,13 @@ module ExecuteStage (
     // MUX for ALU input 2 selection
     assign ALUInput2 = ALUSrc ? imm : readData2;
 
-    // ALU control unit
-    ALUControlUnit aluControlUnit (
-        .funct3(funct3),
-        .funct7(funct7),
-        .ALUOp(ALUOp),
-        .ALUControl(ALUControl)
-    );
+    // // ALU control unit
+    // ALUControlUnit aluControlUnit (
+    //     .funct3(funct3),
+    //     .funct7(funct7),
+    //     .ALUOp(ALUOp),
+    //     .ALUControl(ALUControl)
+    // );
 
     // Main ALU
     alu2 mainALU (
@@ -49,7 +48,6 @@ module ExecuteStage (
         .rd(immShifted)
     );
 
-    // ALU for adding PC and shifted immediate value
     alu2 addALU (
         .rs1(PC),
         .rs2(immShifted),
@@ -89,7 +87,7 @@ module ALUControlUnit (
                     10'b0000000_001: ALUControl = 4'b0100; // SLL
                     10'b0000000_101: ALUControl = 4'b0101; // SRL
                     10'b0100000_101: ALUControl = 4'b0111; // SRA
-                    default: ALUControl = 4'b0000; // Default to AND
+                    default: ALUControl = 4'b00; //Default to AND
                 endcase
             end
             default: ALUControl = 4'b0000; // Default to AND

@@ -42,7 +42,7 @@ module InstructionFetch(
 
     // Read instruction from memory (word-aligned access)
     always @(*) begin
-        instruction = instruction_memory[PC[6:2]]; // Addressed by word index
+        instruction = instruction_memory[PC[8:2]]; // Addressed by word index
     end
 
 endmodule
