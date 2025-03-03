@@ -34,8 +34,6 @@ module TopLevel_tb;
         // Apply reset
         #10;
         reset = 0;
-        
-        // Run simulation for 64 clock cycles but print only from 30 onwards
         repeat (16) begin
             #10;
             instr_count = instr_count + 1;
