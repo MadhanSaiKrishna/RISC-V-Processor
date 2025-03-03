@@ -1,0 +1,26 @@
+[*]
+[*] GTKWave Analyzer v3.3.104 (w)1999-2020 BSI
+[*] Mon Mar  3 17:14:51 2025
+[*]
+[dumpfile] "/home/madhan/RISC-V-Processor/Sequential_Design/TopLevel_tb.vcd"
+[dumpfile_mtime] "Mon Mar  3 17:11:44 2025"
+[dumpfile_size] 486752
+[savefile] "/home/madhan/RISC-V-Processor/Sequential_Design/instructions_test_3.gtkw"
+[timestart] 0
+[size] 1908 1047
+[pos] -595 -207
+*-14.491563 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] TopLevel_tb.
+[treeopen] TopLevel_tb.uut.
+[sst_width] 214
+[signals_width] 166
+[sst_expanded] 1
+[sst_vpaned_height] 309
+@28
+TopLevel_tb.clk
+@24
+TopLevel_tb.uut.ifetch.PC[63:0]
+@23
+TopLevel_tb.uut.idecode.instruction[31:0]
+[pattern_trace] 1
+[pattern_trace] 0

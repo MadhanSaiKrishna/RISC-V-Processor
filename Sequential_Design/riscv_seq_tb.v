@@ -34,6 +34,7 @@ module TopLevel_tb;
         // Apply reset
         #10;
         reset = 0;
+        
         repeat (16) begin
             #10;
             instr_count = instr_count + 1;
