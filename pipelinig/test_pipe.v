@@ -26,7 +26,7 @@ module TopLevel_tb;
     
     // Testbench logic
     initial begin
-        // Open file for output logging
+        // Open file for output logging2
         $dumpfile("TopLevel_tb.vcd");
         $dumpvars(0, TopLevel_tb);
         
@@ -49,8 +49,7 @@ module TopLevel_tb;
             
             // Fetch Stage
             $display("\n--- Fetch Stage ---");
-            $display("PC: %h  |  Instruction: %h", uut.PC, uut.instruction);
-            $display("BranchTaken: %b  |  branchAddr: %h", uut.branch_taken, uut.branchAddr);
+            $display("PC: %h  |  Instruction: %h | BranchTaken: %h", uut.PC, uut.instruction, uut.branch_taken);
             
             // Decode Stage
             $display("\n--- Decode Stage ---");
@@ -59,32 +58,10 @@ module TopLevel_tb;
             $display("funct3: %b  |  funct7: %b  |  Immediate: %h", 
                 uut.idecode.funct3, uut.idecode.funct7, uut.immgen.imm);
             
-            // Control Unit
-            $display("\n--- Control Unit ---");
-            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b", 
-                uut.RegWrite, uut.MemtoReg, uut.Branch);
-            $display("MemRead: %b  |  MemWrite: %b  |  ALUSrc: %b  |  ALUOp: %b", 
-                uut.MemRead, uut.MemWrite, uut.ALUSrc, uut.ALUOp);
-            
-            // Register File
-            $display("\n--- Register File ---");
-            $display("ReadData1: %h  |  ReadData2: %h", uut.readData1, uut.readData2);
-            $display("WriteData: %h  |  RegWrite: %b", uut.write_data, uut.MEM_WB_RegWrite);
-            
-            // Immediate Generator
-            $display("\n--- Immediate Generator ---");
-            $display("Immediate: %h", uut.immgen.imm);
-            
-            // ALU Control Unit
-            $display("\n--- ALU Control Unit ---");
-            $display("ALUControl: %b", uut.ALUControl);
-            
             // Execute Stage
             $display("\n--- Execute Stage ---");
             $display("ReadData1: %h  |  ReadData2: %h", uut.execute.readData1, uut.execute.readData2);
-            $display("ALUResult: %h  |  Zero: %b", uut.execute.ALUResult, uut.execute.Zero);
-            $display("ALUInput2: %h  |  immShifted: %h  |  PCPlusImmShifted: %h", 
-                uut.ALUInput2, uut.immShifted, uut.PCPlusImmShifted);
+            $display("ALUResult: %h  |  Zero: %b | PC: %h | ImmShifted: %d | PCPlusImmShifted: %h", uut.execute.ALUResult, uut.execute.Zero, uut.execute.PC, uut.execute.immShifted, uut.execute.PCPlusImmShifted);
             
             // Memory Stage
             $display("\n--- Memory Stage ---");
