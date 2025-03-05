@@ -65,8 +65,8 @@ module TopLevel_tb;
             
             // Memory Stage
             $display("\n--- Memory Stage ---");
-            $display("ALUResult: %h  |  MemRead: %b  |  MemWrite: %b", 
-                uut.EX_MEM_ALUResult, uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite);
+            $display("ALUResult: %h  |  MemRead: %b  |  MemWrite: %b | WriteData: %h", 
+                uut.EX_MEM_ALUResult, uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite, uut.datamem.writeData);
             $display("MemReadData: %h", uut.datamem.readData);
             
             // Write Back Stage

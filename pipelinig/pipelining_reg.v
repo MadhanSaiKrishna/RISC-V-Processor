@@ -176,7 +176,7 @@ module TopLevel (
         .clk(clk),
         .reset(reset),
         .BranchTaken(branch_taken),
-        .branchAddr(PCPlusImmShifted),
+        .branchAddr(EX_MEM_PCPlusImmShifted),
         .PC(PC),
         .instruction(instruction)
     );
