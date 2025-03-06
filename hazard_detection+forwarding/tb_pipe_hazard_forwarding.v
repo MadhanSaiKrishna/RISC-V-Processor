@@ -103,8 +103,8 @@ module TopLevel_tb;
             $display("forwardedData1: %h  |  forwardedData2: %h", 
                 uut.ALUInput1, uut.ALUInput2);
             $display("MUX Inputs (ALUInput2):");
-            $display("  ALUSrc: %b  |  imm: %h  |  forwardedData2: %h", 
-                uut.ID_EX_ALUSrc, uut.ID_EX_imm, uut.ALUInput2);
+            $display("  readData2: %h  |  EX_MEM_ALUResult: %h  |  MEM_WB_ALUResult: %h", 
+                uut.ID_EX_readData2, uut.EX_MEM_ALUResult, uut.MEM_WB_ALUResult);
             $display("MUX Inputs (ALU Input 1):");
             $display("  readData1: %h  |  EX_MEM_ALUResult: %h  |  MEM_WB_ALUResult: %h", 
                 uut.ID_EX_readData1, uut.EX_MEM_ALUResult, uut.MEM_WB_ALUResult);

@@ -62,6 +62,7 @@ module TopLevel (
     reg [63:0] MEM_WB_mem_readData;
     reg [63:0] MEM_WB_ALUResult;
     reg [4:0] MEM_WB_rd_addr;
+    reg MEM_WB_memRead; 
 
     // Instruction Decode Stage
     wire [6:0] opcode;
@@ -198,6 +199,7 @@ module TopLevel (
             MEM_WB_mem_readData <= mem_readData;
             MEM_WB_ALUResult <= EX_MEM_ALUResult;
             MEM_WB_rd_addr <= EX_MEM_rd_addr;
+            MEM_WB_memRead <= EX_MEM_MemRead;
         end
     end
     
@@ -273,7 +275,8 @@ module TopLevel (
         .EX_MEM_RegWrite(EX_MEM_RegWrite),
         .MEM_WB_RegWrite(MEM_WB_RegWrite),
         .ForwardA(ForwardA),
-        .ForwardB(ForwardB)
+        .ForwardB(ForwardB),
+        .MEM_WB_memRead(MEM_WB_memRead)
     );
     
     // Execute Stage
@@ -295,7 +298,6 @@ module TopLevel (
         // Forwarding Unit Inputs
         .EX_MEM_ALUResult(EX_MEM_ALUResult),
         .MEM_WB_ALUResult(MEM_WB_ALUResult),
-        .MEM_WB_mem_readData(MEM_WB_mem_readData),
         .EX_MEM_RegWrite(EX_MEM_RegWrite),
         .MEM_WB_RegWrite(MEM_WB_RegWrite),
         .EX_MEM_rd_addr(EX_MEM_rd_addr),
@@ -305,7 +307,9 @@ module TopLevel (
         .ForwardA(ForwardA),
         .ForwardB(ForwardB),
         .forwardedData1(ALUInput1),
-        .forwardedData2(ALUInput2)
+        .forwardedData2(ALUInput2),
+        .MEM_WB_memRead(MEM_WB_memRead),
+        .MEM_WB_mem_readData(MEM_WB_mem_readData)
     );
     
     // Data Memory

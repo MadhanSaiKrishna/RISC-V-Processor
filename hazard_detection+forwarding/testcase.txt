@@ -1,0 +1,13 @@
+01043103
+00510233
+40610433
+002204b3
+
+Ld x2,16(x8)
+Add x4,x2,x5
+Sub x8,x2,x6
+Add x9,x4,x2
+
+
+Issue: When the stall is inserted then the value of the alu result after the stall should be the same as the one before the stall
+
