@@ -24,7 +24,7 @@ module DataMemory (
     end
 
     // Asynchronous read operation
-    always @(*) begin
+    always @(posedge clk) begin
         if (MemRead) begin
             readData = memory[address[8:3]]; // Read data from memory
         end else begin

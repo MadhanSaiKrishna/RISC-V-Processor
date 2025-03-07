@@ -132,7 +132,7 @@ module RegisterFile (
 
     // Register Write (Synchronous, on clock edge)
     // always @(posedge clk) begin
-    always @(*) begin
+    always @(negedge clk) begin
         if (regWrite && rd != 5'b0)  // Prevent writing to x0 (zero register)
             registers[rd] <= writeData;
     end

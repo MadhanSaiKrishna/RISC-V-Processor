@@ -40,47 +40,39 @@ module TopLevel_tb;
         reset = 0;
 
         // Display the first instruction and PC value
-        $display("\n=================================================");
+        $display("=================================================");
         $display("  Initial State (Before Simulation Starts)");
         $display("=================================================");
         $display("PC: %h  |  Instruction: %h", uut.PC, uut.instruction);
         $display("=================================================\n");
 
         // Fetch Stage
-            $display("\n--- Fetch Stage ---");
+            $display("--- Fetch Stage ---");
             $display("PC: %h  |  Instruction: %h | BranchTaken: %h | Stall: %h", 
                 uut.PC, uut.instruction, uut.branch_taken, uut.stall);
             
             // Decode Stage
-            $display("\n--- Decode Stage ---");
-            $display("Opcode: %b  |  rs1: %d  |  rs2: %d  |  rd: %d", 
-                uut.opcode, uut.rs1_addr, uut.rs2_addr, uut.rd_addr);
-            $display("funct3: %b  |  funct7: %b  |  Immediate: %h", 
-                uut.funct3, uut.funct7, uut.imm);
-            
+            $display("--- Decode Stage ---");
+            $display("Opcode: %b  |  rs1: %d  |  rs2: %d  |  rd: %d | funct3: %b  |  funct7: %b  |  Immediate: %h", 
+                uut.opcode, uut.rs1_addr, uut.rs2_addr, uut.rd_addr, uut.funct3, uut.funct7, uut.imm);            
             // Control Signals in Decode Stage
-            $display("\n--- Control Signals (Decode Stage) ---");
-            $display("Branch: %b  |  MemRead: %b  |  MemtoReg: %b", 
-                uut.Branch, uut.MemRead, uut.MemtoReg);
-            $display("ALUOp: %b  |  MemWrite: %b  |  ALUSrc: %b  |  RegWrite: %b", 
-                uut.ALUOp, uut.MemWrite, uut.ALUSrc, uut.RegWrite);
-            
+            $display("--- Control Signals (Decode Stage) ---");
+            $display("Branch: %b  |  MemRead: %b  |  MemtoReg: %b |ALUOp: %b  |  MemWrite: %b  |  ALUSrc: %b  |  RegWrite: %b", 
+                uut.Branch, uut.MemRead, uut.MemtoReg, uut.ALUOp, uut.MemWrite, uut.ALUSrc, uut.RegWrite);
             // Execute Stage
-            $display("\n--- Execute Stage ---");
+            $display("--- Execute Stage ---");
             $display("ReadData1: %h  |  ReadData2: %h", 
                 uut.ID_EX_readData1, uut.ID_EX_readData2);
             $display("ALUResult: %h  |  Zero: %b | PC: %h | ImmShifted: %d | PCPlusImmShifted: %h | ALUInput1: %h | ALUInput2: %h", 
                 uut.ALUResult, uut.Zero, uut.ID_EX_PC, uut.immShifted, uut.PCPlusImmShifted, uut.execute.forwardedData1, uut.execute.forwardedData2);
             
             // Control Signals in Execute Stage
-            $display("\n--- Control Signals (Execute Stage) ---");
-            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b", 
-                uut.ID_EX_RegWrite, uut.ID_EX_MemtoReg, uut.ID_EX_Branch);
-            $display("MemRead: %b  |  MemWrite: %b  |  ALUSrc: %b  |  ALUOp: %b", 
-                uut.ID_EX_MemRead, uut.ID_EX_MemWrite, uut.ID_EX_ALUSrc, uut.ID_EX_ALUOp);
+            $display("--- Control Signals (Execute Stage) ---");
+            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b | MemRead: %b  |  MemWrite: %b  |  ALUSrc: %b  |  ALUOp: %b", 
+                uut.ID_EX_RegWrite, uut.ID_EX_MemtoReg, uut.ID_EX_Branch, uut.ID_EX_MemRead, uut.ID_EX_MemWrite, uut.ID_EX_ALUSrc, uut.ID_EX_ALUOp);
             
             // Forwarding Unit Outputs
-            $display("\n--- Forwarding Unit ---");
+            $display("--- Forwarding Unit ---");
             $display("ForwardA: %b  |  ForwardB: %b", uut.ForwardA, uut.ForwardB);
             $display("EX_MEM_ALUResult: %h  |  MEM_WB_ALUResult: %h", 
                 uut.EX_MEM_ALUResult, uut.MEM_WB_ALUResult);
@@ -90,7 +82,7 @@ module TopLevel_tb;
                 uut.ID_EX_RegisterRs1, uut.ID_EX_RegisterRs2);
             
             // Forwarded Data and MUX Inputs
-            $display("\n--- Forwarded Data and MUX Inputs ---");
+            $display("--- Forwarded Data and MUX Inputs ---");
             $display("forwardedData1: %h  |  forwardedData2: %h", 
                 uut.ALUInput1, uut.ALUInput2);
             $display("MUX Inputs (ALUInput2):");
@@ -101,40 +93,34 @@ module TopLevel_tb;
                 uut.ID_EX_readData1, uut.EX_MEM_ALUResult, uut.MEM_WB_ALUResult);
             
             // Memory Stage
-            $display("\n--- Memory Stage ---");
-            $display("ALUResult: %h  |  MemRead: %b  |  MemWrite: %b | WriteData: %h", 
-                uut.EX_MEM_ALUResult, uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite, uut.EX_MEM_readData2);
-            $display("MemReadData: %h", uut.mem_readData);
+            $display("--- Memory Stage ---");
+            $display("ALUResult: %h  |  MemRead: %b  |  MemWrite: %b | WriteData: %h | MemReadData: %h", 
+                uut.EX_MEM_ALUResult, uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite, uut.EX_MEM_readData2, uut.mem_readData);
             
             // Control Signals in Memory Stage
-            $display("\n--- Control Signals (Memory Stage) ---");
-            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b", 
-                uut.EX_MEM_RegWrite, uut.EX_MEM_MemtoReg, uut.EX_MEM_Branch);
-            $display("MemRead: %b  |  MemWrite: %b", 
-                uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite);
+            $display("--- Control Signals (Memory Stage) ---");
+            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b | MemRead: %b  |  MemWrite: %b", 
+                uut.EX_MEM_RegWrite, uut.EX_MEM_MemtoReg, uut.EX_MEM_Branch, uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite);
             
             // Write Back Stage
-            $display("\n--- Write Back Stage ---");
+            $display("--- Write Back Stage ---");
             $display("WriteData: %h", uut.write_data);
             
             // Control Signals in Write Back Stage
-            $display("\n--- Control Signals (Write Back Stage) ---");
+            $display("--- Control Signals (Write Back Stage) ---");
             $display("RegWrite: %b  |  MemtoReg: %b", 
                 uut.MEM_WB_RegWrite, uut.MEM_WB_MemtoReg);
             
             // Pipeline Registers
-            $display("\n--- Pipeline Registers ---");
-            $display("IF/ID: PC=%h  |  Instruction=%h", 
-                uut.IF_ID_PC, uut.IF_ID_instruction);
-            $display("ID/EX: RegWrite=%b  |  MemtoReg=%b  |  ALUOp=%b  |  ALUSrc=%b", 
-                uut.ID_EX_RegWrite, uut.ID_EX_MemtoReg, uut.ID_EX_ALUOp, uut.ID_EX_ALUSrc);
-            $display("EX/MEM: ALUResult=%h  |  Zero=%b  |  MemWrite=%b", 
-                uut.EX_MEM_ALUResult, uut.EX_MEM_Zero, uut.EX_MEM_MemWrite);
-            $display("MEM/WB: RegWrite=%b  |  MemtoReg=%b  |  WriteData=%h", 
-                uut.MEM_WB_RegWrite, uut.MEM_WB_MemtoReg, uut.write_data);
+            $display("--- Pipeline Registers ---");
+            $display("IF/ID: PC=%h  |  Instruction=%h | ID/EX: RegWrite=%b  |  MemtoReg=%b  |  ALUOp=%b  |  ALUSrc=%b", 
+                uut.IF_ID_PC, uut.IF_ID_instruction, uut.ID_EX_RegWrite, uut.ID_EX_MemtoReg, uut.ID_EX_ALUOp, uut.ID_EX_ALUSrc);
+
+            $display("EX/MEM: ALUResult=%h  |  Zero=%b  |  MemWrite=%b | MEM/WB: RegWrite=%b  |  MemtoReg=%b  |  WriteData=%h", 
+                uut.EX_MEM_ALUResult, uut.EX_MEM_Zero, uut.EX_MEM_MemWrite, uut.MEM_WB_RegWrite, uut.MEM_WB_MemtoReg, uut.write_data);
             
             // Register File Dump
-            $display("\n--- Register File ---");
+            $display("--- Register File ---");
             for (i = 0; i < 32; i = i + 4) begin
                 $display("x[%0d]: %h  |  x[%0d]: %h  |  x[%0d]: %h  |  x[%0d]: %h", 
                     i, uut.regfile.registers[i], i+1, uut.regfile.registers[i+1], 
@@ -142,7 +128,7 @@ module TopLevel_tb;
             end
             
             // Data Memory Dump
-            $display("\n--- Data Memory (Memory[0] - Memory[31]) ---");
+            $display("--- Data Memory (Memory[0] - Memory[31]) ---");
             for (i = 0; i < 32; i = i + 4) begin
                 $display("Mem[%0d]: %h  |  Mem[%0d]: %h  |  Mem[%0d]: %h  |  Mem[%0d]: %h", 
                     i, uut.datamem.memory[i], i+1, uut.datamem.memory[i+1],
@@ -154,45 +140,37 @@ module TopLevel_tb;
             #10; // Wait for one clock cycle
             
             // Display pipeline state for each cycle
-            $display("\n=================================================");
+            $display("=================================================");
             $display("  Clock Cycle: %0d  |  Time: %0t ns", cycle_count, $time);
             $display("=================================================");
             
             // Fetch Stage
-            $display("\n--- Fetch Stage ---");
+             $display("--- Fetch Stage ---");
             $display("PC: %h  |  Instruction: %h | BranchTaken: %h | Stall: %h", 
                 uut.PC, uut.instruction, uut.branch_taken, uut.stall);
             
             // Decode Stage
-            $display("\n--- Decode Stage ---");
-            $display("Opcode: %b  |  rs1: %d  |  rs2: %d  |  rd: %d", 
-                uut.opcode, uut.rs1_addr, uut.rs2_addr, uut.rd_addr);
-            $display("funct3: %b  |  funct7: %b  |  Immediate: %h", 
-                uut.funct3, uut.funct7, uut.imm);
-            
+            $display("--- Decode Stage ---");
+            $display("Opcode: %b  |  rs1: %d  |  rs2: %d  |  rd: %d | funct3: %b  |  funct7: %b  |  Immediate: %h", 
+                uut.opcode, uut.rs1_addr, uut.rs2_addr, uut.rd_addr, uut.funct3, uut.funct7, uut.imm);            
             // Control Signals in Decode Stage
-            $display("\n--- Control Signals (Decode Stage) ---");
-            $display("Branch: %b  |  MemRead: %b  |  MemtoReg: %b", 
-                uut.Branch, uut.MemRead, uut.MemtoReg);
-            $display("ALUOp: %b  |  MemWrite: %b  |  ALUSrc: %b  |  RegWrite: %b", 
-                uut.ALUOp, uut.MemWrite, uut.ALUSrc, uut.RegWrite);
-            
+            $display("--- Control Signals (Decode Stage) ---");
+            $display("Branch: %b  |  MemRead: %b  |  MemtoReg: %b |ALUOp: %b  |  MemWrite: %b  |  ALUSrc: %b  |  RegWrite: %b", 
+                uut.Branch, uut.MemRead, uut.MemtoReg, uut.ALUOp, uut.MemWrite, uut.ALUSrc, uut.RegWrite);
             // Execute Stage
-            $display("\n--- Execute Stage ---");
+            $display("--- Execute Stage ---");
             $display("ReadData1: %h  |  ReadData2: %h", 
                 uut.ID_EX_readData1, uut.ID_EX_readData2);
             $display("ALUResult: %h  |  Zero: %b | PC: %h | ImmShifted: %d | PCPlusImmShifted: %h | ALUInput1: %h | ALUInput2: %h", 
-                uut.ALUResult, uut.Zero, uut.ID_EX_PC, uut.immShifted, uut.PCPlusImmShifted, uut.execute.forwardedData1, uut.execute.ALUInput2);
+                uut.ALUResult, uut.Zero, uut.ID_EX_PC, uut.immShifted, uut.PCPlusImmShifted, uut.execute.forwardedData1, uut.execute.forwardedData2);
             
             // Control Signals in Execute Stage
-            $display("\n--- Control Signals (Execute Stage) ---");
-            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b", 
-                uut.ID_EX_RegWrite, uut.ID_EX_MemtoReg, uut.ID_EX_Branch);
-            $display("MemRead: %b  |  MemWrite: %b  |  ALUSrc: %b  |  ALUOp: %b", 
-                uut.ID_EX_MemRead, uut.ID_EX_MemWrite, uut.ID_EX_ALUSrc, uut.ID_EX_ALUOp);
+            $display("--- Control Signals (Execute Stage) ---");
+            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b | MemRead: %b  |  MemWrite: %b  |  ALUSrc: %b  |  ALUOp: %b", 
+                uut.ID_EX_RegWrite, uut.ID_EX_MemtoReg, uut.ID_EX_Branch, uut.ID_EX_MemRead, uut.ID_EX_MemWrite, uut.ID_EX_ALUSrc, uut.ID_EX_ALUOp);
             
             // Forwarding Unit Outputs
-            $display("\n--- Forwarding Unit ---");
+            $display("--- Forwarding Unit ---");
             $display("ForwardA: %b  |  ForwardB: %b", uut.ForwardA, uut.ForwardB);
             $display("EX_MEM_ALUResult: %h  |  MEM_WB_ALUResult: %h", 
                 uut.EX_MEM_ALUResult, uut.MEM_WB_ALUResult);
@@ -202,7 +180,7 @@ module TopLevel_tb;
                 uut.ID_EX_RegisterRs1, uut.ID_EX_RegisterRs2);
             
             // Forwarded Data and MUX Inputs
-            $display("\n--- Forwarded Data and MUX Inputs ---");
+            $display("--- Forwarded Data and MUX Inputs ---");
             $display("forwardedData1: %h  |  forwardedData2: %h", 
                 uut.ALUInput1, uut.ALUInput2);
             $display("MUX Inputs (ALUInput2):");
@@ -213,40 +191,34 @@ module TopLevel_tb;
                 uut.ID_EX_readData1, uut.EX_MEM_ALUResult, uut.MEM_WB_ALUResult);
             
             // Memory Stage
-            $display("\n--- Memory Stage ---");
-            $display("ALUResult: %h  |  MemRead: %b  |  MemWrite: %b | WriteData: %h", 
-                uut.EX_MEM_ALUResult, uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite, uut.EX_MEM_readData2);
-            $display("MemReadData: %h", uut.mem_readData);
+            $display("--- Memory Stage ---");
+            $display("ALUResult: %h  |  MemRead: %b  |  MemWrite: %b | WriteData: %h | MemReadData: %h", 
+                uut.EX_MEM_ALUResult, uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite, uut.EX_MEM_readData2, uut.mem_readData);
             
             // Control Signals in Memory Stage
-            $display("\n--- Control Signals (Memory Stage) ---");
-            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b", 
-                uut.EX_MEM_RegWrite, uut.EX_MEM_MemtoReg, uut.EX_MEM_Branch);
-            $display("MemRead: %b  |  MemWrite: %b", 
-                uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite);
+            $display("--- Control Signals (Memory Stage) ---");
+            $display("RegWrite: %b  |  MemtoReg: %b  |  Branch: %b | MemRead: %b  |  MemWrite: %b", 
+                uut.EX_MEM_RegWrite, uut.EX_MEM_MemtoReg, uut.EX_MEM_Branch, uut.EX_MEM_MemRead, uut.EX_MEM_MemWrite);
             
             // Write Back Stage
-            $display("\n--- Write Back Stage ---");
+            $display("--- Write Back Stage ---");
             $display("WriteData: %h", uut.write_data);
             
             // Control Signals in Write Back Stage
-            $display("\n--- Control Signals (Write Back Stage) ---");
+            $display("--- Control Signals (Write Back Stage) ---");
             $display("RegWrite: %b  |  MemtoReg: %b", 
                 uut.MEM_WB_RegWrite, uut.MEM_WB_MemtoReg);
             
             // Pipeline Registers
-            $display("\n--- Pipeline Registers ---");
-            $display("IF/ID: PC=%h  |  Instruction=%h", 
-                uut.IF_ID_PC, uut.IF_ID_instruction);
-            $display("ID/EX: RegWrite=%b  |  MemtoReg=%b  |  ALUOp=%b  |  ALUSrc=%b", 
-                uut.ID_EX_RegWrite, uut.ID_EX_MemtoReg, uut.ID_EX_ALUOp, uut.ID_EX_ALUSrc);
-            $display("EX/MEM: ALUResult=%h  |  Zero=%b  |  MemWrite=%b", 
-                uut.EX_MEM_ALUResult, uut.EX_MEM_Zero, uut.EX_MEM_MemWrite);
-            $display("MEM/WB: RegWrite=%b  |  MemtoReg=%b  |  WriteData=%h", 
-                uut.MEM_WB_RegWrite, uut.MEM_WB_MemtoReg, uut.write_data);
+            $display("--- Pipeline Registers ---");
+            $display("IF/ID: PC=%h  |  Instruction=%h | ID/EX: RegWrite=%b  |  MemtoReg=%b  |  ALUOp=%b  |  ALUSrc=%b", 
+                uut.IF_ID_PC, uut.IF_ID_instruction, uut.ID_EX_RegWrite, uut.ID_EX_MemtoReg, uut.ID_EX_ALUOp, uut.ID_EX_ALUSrc);
+
+            $display("EX/MEM: ALUResult=%h  |  Zero=%b  |  MemWrite=%b | MEM/WB: RegWrite=%b  |  MemtoReg=%b  |  WriteData=%h", 
+                uut.EX_MEM_ALUResult, uut.EX_MEM_Zero, uut.EX_MEM_MemWrite, uut.MEM_WB_RegWrite, uut.MEM_WB_MemtoReg, uut.write_data);
             
             // Register File Dump
-            $display("\n--- Register File ---");
+            $display("--- Register File ---");
             for (i = 0; i < 32; i = i + 4) begin
                 $display("x[%0d]: %h  |  x[%0d]: %h  |  x[%0d]: %h  |  x[%0d]: %h", 
                     i, uut.regfile.registers[i], i+1, uut.regfile.registers[i+1], 
@@ -254,7 +226,7 @@ module TopLevel_tb;
             end
             
             // Data Memory Dump
-            $display("\n--- Data Memory (Memory[0] - Memory[31]) ---");
+            $display("--- Data Memory (Memory[0] - Memory[31]) ---");
             for (i = 0; i < 32; i = i + 4) begin
                 $display("Mem[%0d]: %h  |  Mem[%0d]: %h  |  Mem[%0d]: %h  |  Mem[%0d]: %h", 
                     i, uut.datamem.memory[i], i+1, uut.datamem.memory[i+1],
