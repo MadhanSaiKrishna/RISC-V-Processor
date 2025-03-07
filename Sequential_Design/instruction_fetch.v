@@ -13,7 +13,7 @@ module InstructionFetch(
 
     // Initialize memory (for simulation/testing)
     initial begin
-        $readmemh("instructions_test_2.hex", instruction_memory); // Load from file
+        $readmemh("instructions_test_3.hex", instruction_memory); // Load from file
     end
 
     // ALU wires

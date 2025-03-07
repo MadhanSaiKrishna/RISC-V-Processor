@@ -20,7 +20,7 @@ module ExecuteStage (
 );
 
     // wire BranchTaken;
-    wire [63:0] PCPlus4;
+    // wire [63:0] PCPlus4;
 
     // MUX for ALU input 2 selection
     assign ALUInput2 = ALUSrc ? imm : readData2;
