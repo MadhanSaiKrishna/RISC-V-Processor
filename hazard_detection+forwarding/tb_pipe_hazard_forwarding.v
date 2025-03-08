@@ -136,7 +136,7 @@ module TopLevel_tb;
             end
         
         // Main simulation loop
-        for (cycle_count = 2; cycle_count <=22; cycle_count = cycle_count + 1) begin
+        for (cycle_count = 1; cycle_count <22; cycle_count = cycle_count + 1) begin
             #10; // Wait for one clock cycle
             
             // Display pipeline state for each cycle
