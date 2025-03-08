@@ -19,6 +19,7 @@ module TopLevel_tb;
     );
     
     // Clock generation
+    
     always #5 clk = ~clk; // 10 ns clock period (100 MHz)
     
     // Testbench variables
