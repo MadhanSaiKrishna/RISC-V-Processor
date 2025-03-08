@@ -1,0 +1,1533 @@
+[Running] tb_pipe_hazard_forwarding.v
+WARNING: ./instruction_fetch.v:16: Excess hex digits (2 of '0x00803103') while reading 32-bit words.
+WARNING: ./instruction_fetch.v:16: $readmemh(instructions_test_1.hex): Not enough words in the file for the requested range [0:15].
+VCD info: dumpfile TopLevel_tb.vcd opened for output.
+
+=================================================
+  Initial State (Before Simulation Starts)
+=================================================
+PC: 0000000000000000  |  Instruction: 00803103
+=================================================
+
+
+=================================================
+  Clock Cycle: 1  |  Time: 20000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000004  |  Instruction: 00803203 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0000011  |  rs1:  0  |  rs2:  8  |  rd:  2
+funct3: 011  |  funct7: 0000000  |  Immediate: 0000000000000008
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 1  |  MemtoReg: 1
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 1  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 0000000000000000  |  ReadData2: 0000000000000000
+ALUResult: 0000000000000000  |  Zero: 1 | PC: 0000000000000000 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000000 | ALUInput1: 0000000000000000 | ALUInput2: 0000000000000000
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr:  0  |  MEM_WB_rd_addr:  0
+ID_EX_RegisterRs1:  0  |  ID_EX_RegisterRs2:  0
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000000  |  forwardedData2: 0000000000000000
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 0000000000000000  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000000
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000000  |  Instruction=00803103
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000000  |  Zero=1  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000002  |  x[3]: 0000000000000003
+x[4]: 0000000000000004  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 2  |  Time: 30000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000008  |  Instruction: 00410463 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0000011  |  rs1:  0  |  rs2:  8  |  rd:  4
+funct3: 011  |  funct7: 0000000  |  Immediate: 0000000000000008
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 1  |  MemtoReg: 1
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 1  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 0000000000000000  |  ReadData2: 0000000000000008
+ALUResult: 0000000000000008  |  Zero: 0 | PC: 0000000000000000 | ImmShifted:                   16 | PCPlusImmShifted: 0000000000000010 | ALUInput1: 0000000000000000 | ALUInput2: 0000000000000008
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 1  |  MemtoReg: 1  |  Branch: 0
+MemRead: 1  |  MemWrite: 0  |  ALUSrc: 1  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr:  0  |  MEM_WB_rd_addr:  0
+ID_EX_RegisterRs1:  0  |  ID_EX_RegisterRs2:  8
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000000  |  forwardedData2: 0000000000000008
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000008  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 0000000000000000  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000000
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000004  |  Instruction=00803203
+ID/EX: RegWrite=1  |  MemtoReg=1  |  ALUOp=00  |  ALUSrc=1
+EX/MEM: ALUResult=0000000000000000  |  Zero=1  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000002  |  x[3]: 0000000000000003
+x[4]: 0000000000000004  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 3  |  Time: 40000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 000000000000000c  |  Instruction: 00418133 | BranchTaken: 0 | Stall: 1
+
+--- Decode Stage ---
+Opcode: 1100011  |  rs1:  2  |  rs2:  4  |  rd:  8
+funct3: 000  |  funct7: 0000000  |  Immediate: 0000000000000008
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: 0000000000000000  |  ReadData2: 0000000000000008
+ALUResult: 0000000000000008  |  Zero: 0 | PC: 0000000000000004 | ImmShifted:                   16 | PCPlusImmShifted: 0000000000000014 | ALUInput1: 0000000000000000 | ALUInput2: 0000000000000008
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 1  |  MemtoReg: 1  |  Branch: 0
+MemRead: 1  |  MemWrite: 0  |  ALUSrc: 1  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000008  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr:  2  |  MEM_WB_rd_addr:  0
+ID_EX_RegisterRs1:  0  |  ID_EX_RegisterRs2:  8
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000000  |  forwardedData2: 0000000000000008
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000008  |  EX_MEM_ALUResult: 0000000000000008  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000008  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 0000000000000008  |  MemRead: 1  |  MemWrite: 0 | WriteData: 0000000000000008
+MemReadData: 0000000000000001
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 1  |  MemtoReg: 1  |  Branch: 0
+MemRead: 1  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000008  |  Instruction=00410463
+ID/EX: RegWrite=1  |  MemtoReg=1  |  ALUOp=00  |  ALUSrc=1
+EX/MEM: ALUResult=0000000000000008  |  Zero=0  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000002  |  x[3]: 0000000000000003
+x[4]: 0000000000000004  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 4  |  Time: 50000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 000000000000000c  |  Instruction: 00418133 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 1100011  |  rs1:  2  |  rs2:  4  |  rd:  8
+funct3: 000  |  funct7: 0000000  |  Immediate: 0000000000000008
+
+--- Control Signals (Decode Stage) ---
+Branch: 1  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 01  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: 0000000000000000  |  ReadData2: 0000000000000000
+ALUResult: 0000000000000000  |  Zero: 1 | PC: 0000000000000000 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000000 | ALUInput1: 0000000000000000 | ALUInput2: 0000000000000000
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000008  |  MEM_WB_ALUResult: 0000000000000008
+EX_MEM_rd_addr:  4  |  MEM_WB_rd_addr:  2
+ID_EX_RegisterRs1:  0  |  ID_EX_RegisterRs2:  0
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000000  |  forwardedData2: 0000000000000000
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000008  |  MEM_WB_ALUResult: 0000000000000008
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000008  |  MEM_WB_ALUResult: 0000000000000008
+
+--- Memory Stage ---
+ALUResult: 0000000000000008  |  MemRead: 1  |  MemWrite: 0 | WriteData: 0000000000000008
+MemReadData: 0000000000000001
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 1  |  MemtoReg: 1  |  Branch: 0
+MemRead: 1  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000001
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 1  |  MemtoReg: 1
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000008  |  Instruction=00410463
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000008  |  Zero=0  |  MemWrite=0
+MEM/WB: RegWrite=1  |  MemtoReg=1  |  WriteData=0000000000000001
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000001  |  x[3]: 0000000000000003
+x[4]: 0000000000000004  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 5  |  Time: 60000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000010  |  Instruction: 004202b3 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0110011  |  rs1:  3  |  rs2:  4  |  rd:  2
+funct3: 000  |  funct7: 0000000  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 10  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 0000000000000001  |  ReadData2: 0000000000000004
+ALUResult: 0000000000000000  |  Zero: 1 | PC: 0000000000000008 | ImmShifted:                   16 | PCPlusImmShifted: 0000000000000018 | ALUInput1: 0000000000000001 | ALUInput2: 0000000000000001
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 1
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 01
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 11
+EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000008
+EX_MEM_rd_addr:  0  |  MEM_WB_rd_addr:  4
+ID_EX_RegisterRs1:  2  |  ID_EX_RegisterRs2:  4
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000001  |  forwardedData2: 0000000000000001
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000004  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000008
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000001  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000008
+
+--- Memory Stage ---
+ALUResult: 0000000000000000  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000000
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000001
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 1  |  MemtoReg: 1
+
+--- Pipeline Registers ---
+IF/ID: PC=000000000000000c  |  Instruction=00418133
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=01  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000000  |  Zero=1  |  MemWrite=0
+MEM/WB: RegWrite=1  |  MemtoReg=1  |  WriteData=0000000000000001
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000001  |  x[3]: 0000000000000003
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 6  |  Time: 70000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000014  |  Instruction: 40d605b3 | BranchTaken: 1 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0110011  |  rs1:  4  |  rs2:  4  |  rd:  5
+funct3: 000  |  funct7: 0000000  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 10  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 0000000000000003  |  ReadData2: 0000000000000001
+ALUResult: 0000000000000004  |  Zero: 0 | PC: 000000000000000c | ImmShifted:                    0 | PCPlusImmShifted: 000000000000000c | ALUInput1: 0000000000000003 | ALUInput2: 0000000000000001
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 10
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr:  8  |  MEM_WB_rd_addr:  0
+ID_EX_RegisterRs1:  3  |  ID_EX_RegisterRs2:  4
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000003  |  forwardedData2: 0000000000000001
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000001  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000003  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 0000000000000000  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000001
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 1
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000010  |  Instruction=004202b3
+ID/EX: RegWrite=1  |  MemtoReg=0  |  ALUOp=10  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000000  |  Zero=1  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000001  |  x[3]: 0000000000000003
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 7  |  Time: 80000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000018  |  Instruction: 005261b3 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0000000  |  rs1:  0  |  rs2:  0  |  rd:  0
+funct3: 000  |  funct7: 0000000  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: 0000000000000000  |  ReadData2: 0000000000000000
+ALUResult: 0000000000000000  |  Zero: 1 | PC: 0000000000000000 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000000 | ALUInput1: 0000000000000000 | ALUInput2: 0000000000000000
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr:  0  |  MEM_WB_rd_addr:  8
+ID_EX_RegisterRs1:  0  |  ID_EX_RegisterRs2:  0
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000000  |  forwardedData2: 0000000000000000
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 0000000000000000  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000000
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000000  |  Instruction=00000000
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000000  |  Zero=0  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000001  |  x[3]: 0000000000000003
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 8  |  Time: 90000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 000000000000001c  |  Instruction: 01e370b3 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0110011  |  rs1:  4  |  rs2:  5  |  rd:  3
+funct3: 110  |  funct7: 0000000  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 10  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 0000000000000000  |  ReadData2: 0000000000000000
+ALUResult: 0000000000000000  |  Zero: 1 | PC: 0000000000000000 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000000 | ALUInput1: 0000000000000000 | ALUInput2: 0000000000000000
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr:  0  |  MEM_WB_rd_addr:  0
+ID_EX_RegisterRs1:  0  |  ID_EX_RegisterRs2:  0
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000000  |  forwardedData2: 0000000000000000
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000000  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 0000000000000000  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000000
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000018  |  Instruction=005261b3
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000000  |  Zero=1  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000001  |  x[3]: 0000000000000003
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 9  |  Time: 100000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000020  |  Instruction: 40b58533 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0110011  |  rs1:  6  |  rs2: 30  |  rd:  1
+funct3: 111  |  funct7: 0000000  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 10  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 0000000000000001  |  ReadData2: 0000000000000005
+ALUResult: 0000000000000005  |  Zero: 0 | PC: 0000000000000018 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000018 | ALUInput1: 0000000000000001 | ALUInput2: 0000000000000005
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 10
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr:  0  |  MEM_WB_rd_addr:  0
+ID_EX_RegisterRs1:  4  |  ID_EX_RegisterRs2:  5
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000001  |  forwardedData2: 0000000000000005
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000005  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000001  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 0000000000000000  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000000
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=000000000000001c  |  Instruction=01e370b3
+ID/EX: RegWrite=1  |  MemtoReg=0  |  ALUOp=10  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000000  |  Zero=1  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000001  |  x[3]: 0000000000000003
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 10  |  Time: 110000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000024  |  Instruction: 00f6f533 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0110011  |  rs1: 11  |  rs2: 11  |  rd: 10
+funct3: 000  |  funct7: 0100000  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 10  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 0000000000000006  |  ReadData2: 000000000000001e
+ALUResult: 0000000000000006  |  Zero: 0 | PC: 000000000000001c | ImmShifted:                    0 | PCPlusImmShifted: 000000000000001c | ALUInput1: 0000000000000006 | ALUInput2: 000000000000001e
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 10
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000005  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr:  3  |  MEM_WB_rd_addr:  0
+ID_EX_RegisterRs1:  6  |  ID_EX_RegisterRs2: 30
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000006  |  forwardedData2: 000000000000001e
+MUX Inputs (ALUInput2):
+  readData2: 000000000000001e  |  EX_MEM_ALUResult: 0000000000000005  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000006  |  EX_MEM_ALUResult: 0000000000000005  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 0000000000000005  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000005
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000020  |  Instruction=40b58533
+ID/EX: RegWrite=1  |  MemtoReg=0  |  ALUOp=10  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000005  |  Zero=0  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000001  |  x[3]: 0000000000000003
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 11  |  Time: 120000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000028  |  Instruction: 009403b3 | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0110011  |  rs1: 13  |  rs2: 15  |  rd: 10
+funct3: 111  |  funct7: 0000000  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 10  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 000000000000000b  |  ReadData2: 000000000000000b
+ALUResult: 0000000000000000  |  Zero: 1 | PC: 0000000000000020 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000020 | ALUInput1: 000000000000000b | ALUInput2: 000000000000000b
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 10
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000006  |  MEM_WB_ALUResult: 0000000000000005
+EX_MEM_rd_addr:  1  |  MEM_WB_rd_addr:  3
+ID_EX_RegisterRs1: 11  |  ID_EX_RegisterRs2: 11
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 000000000000000b  |  forwardedData2: 000000000000000b
+MUX Inputs (ALUInput2):
+  readData2: 000000000000000b  |  EX_MEM_ALUResult: 0000000000000006  |  MEM_WB_ALUResult: 0000000000000005
+MUX Inputs (ALU Input 1):
+  readData1: 000000000000000b  |  EX_MEM_ALUResult: 0000000000000006  |  MEM_WB_ALUResult: 0000000000000005
+
+--- Memory Stage ---
+ALUResult: 0000000000000006  |  MemRead: 0  |  MemWrite: 0 | WriteData: 000000000000001e
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000005
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 1  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000024  |  Instruction=00f6f533
+ID/EX: RegWrite=1  |  MemtoReg=0  |  ALUOp=10  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000006  |  Zero=0  |  MemWrite=0
+MEM/WB: RegWrite=1  |  MemtoReg=0  |  WriteData=0000000000000005
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000001  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 12  |  Time: 130000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 000000000000002c  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: 0110011  |  rs1:  8  |  rs2:  9  |  rd:  7
+funct3: 000  |  funct7: 0000000  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 10  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 1
+
+--- Execute Stage ---
+ReadData1: 000000000000000d  |  ReadData2: 000000000000000f
+ALUResult: 000000000000000d  |  Zero: 0 | PC: 0000000000000024 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000024 | ALUInput1: 000000000000000d | ALUInput2: 000000000000000f
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 10
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000006
+EX_MEM_rd_addr: 10  |  MEM_WB_rd_addr:  1
+ID_EX_RegisterRs1: 13  |  ID_EX_RegisterRs2: 15
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 000000000000000d  |  forwardedData2: 000000000000000f
+MUX Inputs (ALUInput2):
+  readData2: 000000000000000f  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000006
+MUX Inputs (ALU Input 1):
+  readData1: 000000000000000d  |  EX_MEM_ALUResult: 0000000000000000  |  MEM_WB_ALUResult: 0000000000000006
+
+--- Memory Stage ---
+ALUResult: 0000000000000000  |  MemRead: 0  |  MemWrite: 0 | WriteData: 000000000000000b
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000006
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 1  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000028  |  Instruction=009403b3
+ID/EX: RegWrite=1  |  MemtoReg=0  |  ALUOp=10  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000000  |  Zero=1  |  MemWrite=0
+MEM/WB: RegWrite=1  |  MemtoReg=0  |  WriteData=0000000000000006
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000a  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 13  |  Time: 140000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000030  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: xxxxxxx  |  rs1:  x  |  rs2:  x  |  rd:  x
+funct3: xxx  |  funct7: xxxxxxx  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: 0000000000000008  |  ReadData2: 0000000000000009
+ALUResult: 0000000000000011  |  Zero: 0 | PC: 0000000000000028 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000028 | ALUInput1: 0000000000000008 | ALUInput2: 0000000000000009
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 10
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 000000000000000d  |  MEM_WB_ALUResult: 0000000000000000
+EX_MEM_rd_addr: 10  |  MEM_WB_rd_addr: 10
+ID_EX_RegisterRs1:  8  |  ID_EX_RegisterRs2:  9
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: 0000000000000008  |  forwardedData2: 0000000000000009
+MUX Inputs (ALUInput2):
+  readData2: 0000000000000009  |  EX_MEM_ALUResult: 000000000000000d  |  MEM_WB_ALUResult: 0000000000000000
+MUX Inputs (ALU Input 1):
+  readData1: 0000000000000008  |  EX_MEM_ALUResult: 000000000000000d  |  MEM_WB_ALUResult: 0000000000000000
+
+--- Memory Stage ---
+ALUResult: 000000000000000d  |  MemRead: 0  |  MemWrite: 0 | WriteData: 000000000000000f
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000000
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 1  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=000000000000002c  |  Instruction=xxxxxxxx
+ID/EX: RegWrite=1  |  MemtoReg=0  |  ALUOp=10  |  ALUSrc=0
+EX/MEM: ALUResult=000000000000000d  |  Zero=0  |  MemWrite=0
+MEM/WB: RegWrite=1  |  MemtoReg=0  |  WriteData=0000000000000000
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 0000000000000000  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 14  |  Time: 150000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000034  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: xxxxxxx  |  rs1:  x  |  rs2:  x  |  rd:  x
+funct3: xxx  |  funct7: xxxxxxx  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: xxxxxxxxxxxxxxxx  |  ReadData2: xxxxxxxxxxxxxxxx
+ALUResult: xxxxxxxxxxxxxxxx  |  Zero: x | PC: 000000000000002c | ImmShifted:                    0 | PCPlusImmShifted: 000000000000002c | ALUInput1: xxxxxxxxxxxxxxxx | ALUInput2: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: 0000000000000011  |  MEM_WB_ALUResult: 000000000000000d
+EX_MEM_rd_addr:  7  |  MEM_WB_rd_addr: 10
+ID_EX_RegisterRs1:  x  |  ID_EX_RegisterRs2:  x
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: xxxxxxxxxxxxxxxx  |  forwardedData2: xxxxxxxxxxxxxxxx
+MUX Inputs (ALUInput2):
+  readData2: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: 0000000000000011  |  MEM_WB_ALUResult: 000000000000000d
+MUX Inputs (ALU Input 1):
+  readData1: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: 0000000000000011  |  MEM_WB_ALUResult: 000000000000000d
+
+--- Memory Stage ---
+ALUResult: 0000000000000011  |  MemRead: 0  |  MemWrite: 0 | WriteData: 0000000000000009
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 1  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 000000000000000d
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 1  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000030  |  Instruction=xxxxxxxx
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=0000000000000011  |  Zero=0  |  MemWrite=0
+MEM/WB: RegWrite=1  |  MemtoReg=0  |  WriteData=000000000000000d
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000007
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000d  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 15  |  Time: 160000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000038  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: xxxxxxx  |  rs1:  x  |  rs2:  x  |  rd:  x
+funct3: xxx  |  funct7: xxxxxxx  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: xxxxxxxxxxxxxxxx  |  ReadData2: xxxxxxxxxxxxxxxx
+ALUResult: xxxxxxxxxxxxxxxx  |  Zero: x | PC: 0000000000000030 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000030 | ALUInput1: xxxxxxxxxxxxxxxx | ALUInput2: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: 0000000000000011
+EX_MEM_rd_addr:  x  |  MEM_WB_rd_addr:  7
+ID_EX_RegisterRs1:  x  |  ID_EX_RegisterRs2:  x
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: xxxxxxxxxxxxxxxx  |  forwardedData2: xxxxxxxxxxxxxxxx
+MUX Inputs (ALUInput2):
+  readData2: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: 0000000000000011
+MUX Inputs (ALU Input 1):
+  readData1: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: 0000000000000011
+
+--- Memory Stage ---
+ALUResult: xxxxxxxxxxxxxxxx  |  MemRead: 0  |  MemWrite: 0 | WriteData: xxxxxxxxxxxxxxxx
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: 0000000000000011
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 1  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000034  |  Instruction=xxxxxxxx
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=xxxxxxxxxxxxxxxx  |  Zero=x  |  MemWrite=0
+MEM/WB: RegWrite=1  |  MemtoReg=0  |  WriteData=0000000000000011
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000011
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000d  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 16  |  Time: 170000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 000000000000003c  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: xxxxxxx  |  rs1:  x  |  rs2:  x  |  rd:  x
+funct3: xxx  |  funct7: xxxxxxx  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: xxxxxxxxxxxxxxxx  |  ReadData2: xxxxxxxxxxxxxxxx
+ALUResult: xxxxxxxxxxxxxxxx  |  Zero: x | PC: 0000000000000034 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000034 | ALUInput1: xxxxxxxxxxxxxxxx | ALUInput2: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+EX_MEM_rd_addr:  x  |  MEM_WB_rd_addr:  x
+ID_EX_RegisterRs1:  x  |  ID_EX_RegisterRs2:  x
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: xxxxxxxxxxxxxxxx  |  forwardedData2: xxxxxxxxxxxxxxxx
+MUX Inputs (ALUInput2):
+  readData2: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+MUX Inputs (ALU Input 1):
+  readData1: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+
+--- Memory Stage ---
+ALUResult: xxxxxxxxxxxxxxxx  |  MemRead: 0  |  MemWrite: 0 | WriteData: xxxxxxxxxxxxxxxx
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000038  |  Instruction=xxxxxxxx
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=xxxxxxxxxxxxxxxx  |  Zero=x  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=xxxxxxxxxxxxxxxx
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000011
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000d  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 17  |  Time: 180000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000040  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: xxxxxxx  |  rs1:  x  |  rs2:  x  |  rd:  x
+funct3: xxx  |  funct7: xxxxxxx  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: xxxxxxxxxxxxxxxx  |  ReadData2: xxxxxxxxxxxxxxxx
+ALUResult: xxxxxxxxxxxxxxxx  |  Zero: x | PC: 0000000000000038 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000038 | ALUInput1: xxxxxxxxxxxxxxxx | ALUInput2: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+EX_MEM_rd_addr:  x  |  MEM_WB_rd_addr:  x
+ID_EX_RegisterRs1:  x  |  ID_EX_RegisterRs2:  x
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: xxxxxxxxxxxxxxxx  |  forwardedData2: xxxxxxxxxxxxxxxx
+MUX Inputs (ALUInput2):
+  readData2: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+MUX Inputs (ALU Input 1):
+  readData1: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+
+--- Memory Stage ---
+ALUResult: xxxxxxxxxxxxxxxx  |  MemRead: 0  |  MemWrite: 0 | WriteData: xxxxxxxxxxxxxxxx
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=000000000000003c  |  Instruction=xxxxxxxx
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=xxxxxxxxxxxxxxxx  |  Zero=x  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=xxxxxxxxxxxxxxxx
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000011
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000d  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 18  |  Time: 190000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000044  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: xxxxxxx  |  rs1:  x  |  rs2:  x  |  rd:  x
+funct3: xxx  |  funct7: xxxxxxx  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: xxxxxxxxxxxxxxxx  |  ReadData2: xxxxxxxxxxxxxxxx
+ALUResult: xxxxxxxxxxxxxxxx  |  Zero: x | PC: 000000000000003c | ImmShifted:                    0 | PCPlusImmShifted: 000000000000003c | ALUInput1: xxxxxxxxxxxxxxxx | ALUInput2: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+EX_MEM_rd_addr:  x  |  MEM_WB_rd_addr:  x
+ID_EX_RegisterRs1:  x  |  ID_EX_RegisterRs2:  x
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: xxxxxxxxxxxxxxxx  |  forwardedData2: xxxxxxxxxxxxxxxx
+MUX Inputs (ALUInput2):
+  readData2: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+MUX Inputs (ALU Input 1):
+  readData1: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+
+--- Memory Stage ---
+ALUResult: xxxxxxxxxxxxxxxx  |  MemRead: 0  |  MemWrite: 0 | WriteData: xxxxxxxxxxxxxxxx
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000040  |  Instruction=xxxxxxxx
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=xxxxxxxxxxxxxxxx  |  Zero=x  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=xxxxxxxxxxxxxxxx
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000011
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000d  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 19  |  Time: 200000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 0000000000000048  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: xxxxxxx  |  rs1:  x  |  rs2:  x  |  rd:  x
+funct3: xxx  |  funct7: xxxxxxx  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: xxxxxxxxxxxxxxxx  |  ReadData2: xxxxxxxxxxxxxxxx
+ALUResult: xxxxxxxxxxxxxxxx  |  Zero: x | PC: 0000000000000040 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000040 | ALUInput1: xxxxxxxxxxxxxxxx | ALUInput2: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+EX_MEM_rd_addr:  x  |  MEM_WB_rd_addr:  x
+ID_EX_RegisterRs1:  x  |  ID_EX_RegisterRs2:  x
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: xxxxxxxxxxxxxxxx  |  forwardedData2: xxxxxxxxxxxxxxxx
+MUX Inputs (ALUInput2):
+  readData2: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+MUX Inputs (ALU Input 1):
+  readData1: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+
+--- Memory Stage ---
+ALUResult: xxxxxxxxxxxxxxxx  |  MemRead: 0  |  MemWrite: 0 | WriteData: xxxxxxxxxxxxxxxx
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000044  |  Instruction=xxxxxxxx
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=xxxxxxxxxxxxxxxx  |  Zero=x  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=xxxxxxxxxxxxxxxx
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000011
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000d  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+
+=================================================
+  Clock Cycle: 20  |  Time: 210000 ns
+=================================================
+
+--- Fetch Stage ---
+PC: 000000000000004c  |  Instruction: xxxxxxxx | BranchTaken: 0 | Stall: 0
+
+--- Decode Stage ---
+Opcode: xxxxxxx  |  rs1:  x  |  rs2:  x  |  rd:  x
+funct3: xxx  |  funct7: xxxxxxx  |  Immediate: 0000000000000000
+
+--- Control Signals (Decode Stage) ---
+Branch: 0  |  MemRead: 0  |  MemtoReg: 0
+ALUOp: 00  |  MemWrite: 0  |  ALUSrc: 0  |  RegWrite: 0
+
+--- Execute Stage ---
+ReadData1: xxxxxxxxxxxxxxxx  |  ReadData2: xxxxxxxxxxxxxxxx
+ALUResult: xxxxxxxxxxxxxxxx  |  Zero: x | PC: 0000000000000044 | ImmShifted:                    0 | PCPlusImmShifted: 0000000000000044 | ALUInput1: xxxxxxxxxxxxxxxx | ALUInput2: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Execute Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0  |  ALUSrc: 0  |  ALUOp: 00
+
+--- Forwarding Unit ---
+ForwardA: 00  |  ForwardB: 00
+EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+EX_MEM_rd_addr:  x  |  MEM_WB_rd_addr:  x
+ID_EX_RegisterRs1:  x  |  ID_EX_RegisterRs2:  x
+
+--- Forwarded Data and MUX Inputs ---
+forwardedData1: xxxxxxxxxxxxxxxx  |  forwardedData2: xxxxxxxxxxxxxxxx
+MUX Inputs (ALUInput2):
+  readData2: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+MUX Inputs (ALU Input 1):
+  readData1: xxxxxxxxxxxxxxxx  |  EX_MEM_ALUResult: xxxxxxxxxxxxxxxx  |  MEM_WB_ALUResult: xxxxxxxxxxxxxxxx
+
+--- Memory Stage ---
+ALUResult: xxxxxxxxxxxxxxxx  |  MemRead: 0  |  MemWrite: 0 | WriteData: xxxxxxxxxxxxxxxx
+MemReadData: 0000000000000000
+
+--- Control Signals (Memory Stage) ---
+RegWrite: 0  |  MemtoReg: 0  |  Branch: 0
+MemRead: 0  |  MemWrite: 0
+
+--- Write Back Stage ---
+WriteData: xxxxxxxxxxxxxxxx
+
+--- Control Signals (Write Back Stage) ---
+RegWrite: 0  |  MemtoReg: 0
+
+--- Pipeline Registers ---
+IF/ID: PC=0000000000000048  |  Instruction=xxxxxxxx
+ID/EX: RegWrite=0  |  MemtoReg=0  |  ALUOp=00  |  ALUSrc=0
+EX/MEM: ALUResult=xxxxxxxxxxxxxxxx  |  Zero=x  |  MemWrite=0
+MEM/WB: RegWrite=0  |  MemtoReg=0  |  WriteData=xxxxxxxxxxxxxxxx
+
+--- Register File ---
+x[0]: 0000000000000000  |  x[1]: 0000000000000006  |  x[2]: 0000000000000001  |  x[3]: 0000000000000005
+x[4]: 0000000000000001  |  x[5]: 0000000000000005  |  x[6]: 0000000000000006  |  x[7]: 0000000000000011
+x[8]: 0000000000000008  |  x[9]: 0000000000000009  |  x[10]: 000000000000000d  |  x[11]: 000000000000000b
+x[12]: 0000000000000019  |  x[13]: 000000000000000d  |  x[14]: 000000000000000e  |  x[15]: 000000000000000f
+x[16]: 0000000000000010  |  x[17]: 0000000000000011  |  x[18]: 0000000000000012  |  x[19]: 0000000000000013
+x[20]: 0000000000000014  |  x[21]: 0000000000000015  |  x[22]: 0000000000000016  |  x[23]: 0000000000000017
+x[24]: 0000000000000018  |  x[25]: 0000000000000019  |  x[26]: 000000000000001a  |  x[27]: 000000000000001b
+x[28]: 000000000000001c  |  x[29]: 000000000000001d  |  x[30]: 000000000000001e  |  x[31]: 000000000000001f
+
+--- Data Memory (Memory[0] - Memory[31]) ---
+Mem[0]: 0000000000000000  |  Mem[1]: 0000000000000001  |  Mem[2]: 0000000000000002  |  Mem[3]: 0000000000000003
+Mem[4]: 0000000000000004  |  Mem[5]: 0000000000000005  |  Mem[6]: 0000000000000006  |  Mem[7]: 0000000000000007
+Mem[8]: 0000000000000008  |  Mem[9]: 0000000000000009  |  Mem[10]: 000000000000000a  |  Mem[11]: 000000000000000b
+Mem[12]: 000000000000000c  |  Mem[13]: 000000000000000d  |  Mem[14]: 000000000000000e  |  Mem[15]: 000000000000000f
+Mem[16]: 0000000000000010  |  Mem[17]: 0000000000000011  |  Mem[18]: 0000000000000012  |  Mem[19]: 0000000000000013
+Mem[20]: 0000000000000014  |  Mem[21]: 0000000000000015  |  Mem[22]: 0000000000000016  |  Mem[23]: 0000000000000017
+Mem[24]: 0000000000000018  |  Mem[25]: 0000000000000019  |  Mem[26]: 000000000000001a  |  Mem[27]: 000000000000001b
+Mem[28]: 000000000000001c  |  Mem[29]: 000000000000001d  |  Mem[30]: 000000000000001e  |  Mem[31]: 000000000000001f
+[Done] exit with code=0 in 1.011 seconds
+
