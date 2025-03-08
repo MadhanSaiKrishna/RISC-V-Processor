@@ -190,7 +190,7 @@ module TopLevel (
             EX_MEM_PCPlusImmShifted <= PCPlusImmShifted;
             EX_MEM_Zero <= Zero;
             EX_MEM_ALUResult <= ALUResult;
-            EX_MEM_readData2 <= ID_EX_readData2;
+            EX_MEM_readData2 <= ALUInput2;
             EX_MEM_rd_addr <= ID_EX_rd_addr;
 
             // MEM/WB Stage
