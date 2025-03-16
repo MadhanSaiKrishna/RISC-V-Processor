@@ -93,3 +93,8 @@ Marks will be assigned as follows:
 | Pipelined Design Implementation    | 40        |
 
 ---
+
+## Contributors:
+Roshan Kondabattini  
+Chamarthy Madhan Sai Krishna  
+Kaamya Daasika  
